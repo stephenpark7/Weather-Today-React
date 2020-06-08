@@ -1,0 +1,135 @@
+body {
+  text-align: center;
+  background-color: #2670AF;
+  color: white;
+}
+
+h1 {
+  font-family: "Girassol", cursive;
+  font-size: 3em;
+  font-weight: 300;
+  margin: .25em 0 .25em 0;
+  text-align: center;
+}
+
+hr {
+  background-image: rgb(150, 199, 238);
+  background-image: linear-gradient(90deg, rgba(150, 199, 238, 0.05) 0%,
+                                           rgba(150, 199, 238, 0.2) 50%,
+                                           rgba(150, 199, 238, 0.05) 100%);
+  border: 0;
+  height: 1px;
+}
+
+span {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+
+.main-container {
+  padding-top: .5em;
+}
+
+.search-bar-container {
+  padding-bottom: .5em;
+}
+
+.fg-search {
+  margin: auto;
+  background-color: white;
+  position: relative;
+  width: 200px;
+  border-radius: 20px;
+}
+
+.fg-search input {
+  width: 80%;
+  padding: 1em;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  display: block;
+}
+
+.fg-search button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  font-size: 1em;
+  position: absolute;
+  top: .75em;
+  right: .75em;
+  padding: 0 0 0 0;
+  z-index: 2;
+
+  color: rgb(204, 255, 255);
+  stroke: black;
+  stroke-width: 15;
+
+  transition: .2s ease-in;
+}
+
+.fg-search button:hover {
+  color: yellow;
+}
+
+.header-container {
+  margin-top: .5em;
+}
+
+.city-desc {
+  font-size: 1.2em;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.label {
+  font-size: .8em;
+  padding-bottom: 2em;
+  display: block;
+}
+
+.value {
+  font-weight: 300;
+  text-align: center;
+  display: block;
+}
+
+.weather-img-div {
+  display: inline-block;
+  position: relative;
+}
+
+.weather-img {
+  width: 64px;
+}
+
+.weather-temp {
+  position: absolute;
+  top: 1.35em;
+  display: inline;
+}
+
+.col-A {
+  text-align: right;
+}
+
+.col-B .value {
+  text-align: left;
+  padding-bottom: 1.35em;
+}
+
+.footer-container {
+  font-size: .8em;
+}
+
+.visit-name{ 
+  font-size: 1.25em;
+}
+
+.visit-text {
+  padding-right: .75em;
+  vertical-align: .9em;
+}

@@ -2,11 +2,11 @@ const express = require("express");
 const path = require("path");
 const axios = require("axios");
 const requestIp = require("request-ip");
-const MY_IP = require("./config");
 const app = express();
 
 const SERVER_PORT = process.env.PORT || 5000;
 const PRODUCTION_MODE = process.env.NODE_ENV === "production";
+let MY_IP; if (PRODUCTION_MODE) MY_IP = require("./config");
 
 const WEATHERDATA_URL = "https://api.openweathermap.org/data/2.5/weather?";
 const WEATHERDATA_APIKEY = "b3cc305bb205466c20e6b12d5aef231f";

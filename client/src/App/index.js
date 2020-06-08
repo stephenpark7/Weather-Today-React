@@ -8,9 +8,6 @@ import Footer from "./components/Footer";
 
 import { fetchGeolocation, browserGeolocation } from "./middleware/geolocation";
 
-const WEATHERDATA_URL = "https://api.openweathermap.org/data/2.5/weather?";
-const WEATHERDATA_APIKEY = "b3cc305bb205466c20e6b12d5aef231f";
-
 function WeatherToday() {
 
   const [getCityName, setCityName] = useState(null);
@@ -21,6 +18,10 @@ function WeatherToday() {
     const city = searchBar.value;
     if (city) {
       searchBar.value = "";
+      axios.get("/geoloc")
+      .then(res => {
+        console.log(res);
+      });
       fetchWeatherData(city);
     }
   }
@@ -28,7 +29,7 @@ function WeatherToday() {
   function fetchWeatherData(city) {
     // if user searches for a city
     if (city) {
-      axios.get(WEATHERDATA_URL + "q=" + city + "&units=metric&appid=" + WEATHERDATA_APIKEY)
+      axios.get("/city/" + city)
       .then(res => {
         const timestamp = Date.now();
         const location = { city: city };
@@ -52,7 +53,7 @@ function WeatherToday() {
         setWeatherData(weatherData);
       }
       else {
-        axios.get(WEATHERDATA_URL + "lat=" + locationData.latitude + "&lon=" + locationData.longitude + "&units=metric&appid=" + WEATHERDATA_APIKEY)
+        axios.get("/loc?lat=" + locationData.latitude + "&lon=" + locationData.longitude)
         .then(res => {
           localStorage.setItem("weatherData", JSON.stringify(res.data));
           setCityName(locationData.city);

@@ -1,11 +1,8 @@
 import axios from "axios";
 
-const GEOLOCATION_URL = "https://api.ipgeolocation.io/ipgeo?apiKey=1531619570aa43a49de0298f9156153c";
-const REVERSE_URL = "https://us1.locationiq.com/v1/reverse.php?key=1ace468b6ab00c";
-
 export function fetchGeolocation() {
   return new Promise((resolve, reject) => {
-    axios.get(GEOLOCATION_URL)
+    axios.get("/geoloc")
     .then(res => {
       const data = { city: res.data.city, latitude: res.data.latitude, longitude: res.data.longitude };
       resolve(data);
@@ -41,10 +38,9 @@ export function browserGeolocation() {
 export function reverseGeolocation(data) {
   return new Promise((resolve, reject) => {
     if (data) {
-      const url = REVERSE_URL + "&lat=" + data.latitude + "&lon=" + data.longitude + "&format=json";
-      axios.get(url)
+      axios.get("/reverse?lat=" + data.latitude + "&lon=" + data.longitude)
       .then(res => {
-        const newData = { city: res.data.address.city, latitude: data.latitude, longitude: data.longitude };
+        const newData = { city: res.data.city, latitude: data.latitude, longitude: data.longitude };
         resolve(newData);
       })
       .catch(() => {

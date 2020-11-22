@@ -1,7 +1,7 @@
 # Weather Today
 
 ## Description
-A full-stack web application built using React as the front-end framework and NodeJS/Express for the back-end. It fetches geolocation data and weather data using third-party APIs.
+A full-stack web application built using React for the front-end and NodeJS/Express for the back-end. It fetches geolocation data and weather data using third-party APIs.
 
 ## Demo Link
 https://weather-today-react.herokuapp.com/

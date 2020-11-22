@@ -23,5 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # TODO
-TODO
-config.js
+/TODO
+
+# local env
+server/config.js

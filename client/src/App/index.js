@@ -13,15 +13,22 @@ function WeatherToday() {
   const [getCityName, setCityName] = useState(null);
   const [getWeatherData, setWeatherData] = useState(null);
 
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') handleSearch();
+  }
+
   function handleSearch() {
     const searchBar = document.querySelector(".search-bar");
     const city = searchBar.value;
     if (city) {
       searchBar.value = "";
-      axios.get("/geoloc")
-      .then(res => {
-        console.log(res);
-      });
+      // axios.get("/geoloc")
+      // .then(res => {
+      //   console.log(res);
+      // })
+      // .catch(err => {
+      //   console.log(err);
+      // });
       fetchWeatherData(city);
     }
   }
@@ -67,7 +74,6 @@ function WeatherToday() {
   }
 
   useEffect(() => {
-
     function getGeolocation() {
       return new Promise((resolve, reject) => {
         fetchGeolocation()
@@ -88,17 +94,15 @@ function WeatherToday() {
     }
 
     // check to see if the user has used the app before
-    //let firstTime = false;
-    let timestamp = localStorage.getItem("timestamp");
+    const timestamp = localStorage.getItem("timestamp");
     const locationData = localStorage.getItem("location");
     const weatherData = localStorage.getItem("weatherData");
 
     // if first time user or need to update data
-    if (!timestamp || !locationData || !weatherData || Date.now() - timestamp > 600000) { // update every 10 minutes
+    if (!timestamp || !locationData || !weatherData || (Date.now() - timestamp) > 600000) { // update every 10 minutes
       getGeolocation()
       .then(data => {
-        timestamp = Date.now();
-        localStorage.setItem("timestamp", timestamp);
+        localStorage.setItem("timestamp", Date.now());
         localStorage.setItem("location", JSON.stringify(data));
         fetchWeatherData();
       })
@@ -110,7 +114,6 @@ function WeatherToday() {
       setCityName(JSON.parse(locationData).city);
       setWeatherData(JSON.parse(weatherData));
     }
-
   }, []);
 
   return (
@@ -119,7 +122,7 @@ function WeatherToday() {
         <h1>Weather Today</h1>
         <div className="container search-bar-container">
           <div className="form-group fg-search">
-            <input className="search-bar" type="text" placeholder="Search for location"></input>
+            <input className="search-bar" type="text" placeholder="Search for location" onKeyDown={handleKeyDown}></input>
             <button type="submit" onClick={handleSearch}><i className="fa fa-search"></i></button>
           </div>
         </div>
